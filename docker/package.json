@@ -1,7 +1,8 @@
 {
   "name": "web-editor-image",
   "version": "1.0.0",
-  "description": "",
+  "description": "Web editor runtime",
+  "repository": "https://github.com/BrewBlox/brewblox-web-editor",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
