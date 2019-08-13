@@ -1,4 +1,4 @@
-FROM arm32v7/node:lts-slim
+FROM brewblox/rpi-node:10-alpine
 EXPOSE 8300
 WORKDIR /app
 
@@ -11,7 +11,7 @@ COPY package*.json /app/
 COPY server.js /app/
 COPY dist /app/dist
 
-RUN npm install && chmod +x /tini
+RUN npm install --quiet && chmod +x /tini
 
 ENTRYPOINT ["/tini", "--"]
 CMD [ "node", "server.js" ]
