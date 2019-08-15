@@ -11,6 +11,8 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "core-js": "^2.6.5",
+    "js-yaml": "^3.13.1",
+    "jsonschema": "^1.2.4",
     "vue": "^2.6.10"
   },
   "devDependencies": {
