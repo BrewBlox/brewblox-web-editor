@@ -21,5 +21,4 @@ app.post('/_save/:file', (req, res) => {
 
 app.listen(PORT);
 
-console.log(`Go to http://IP_ADDRESS:${PORT} in your browser to edit.`);
 console.log('Press Ctrl-C to exit');
