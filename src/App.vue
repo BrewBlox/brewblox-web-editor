@@ -15,8 +15,8 @@ export default {
     text: '',
     validator: new jsonschema.Validator(),
     validateError: null,
+    windowHeight: window.innerHeight,
     editor: null,
-    height: window.innerHeight - 100,
     editorOptions: {
       showInvisibles: true,
     },
@@ -72,7 +72,7 @@ export default {
     <AceEditor
       v-model="text"
       @init="initEditor"
-      :height="height"
+      :height="windowHeight - 60"
       :options="editorOptions"
       lang="yaml"
       theme="github"
@@ -108,13 +108,14 @@ body {
 
 .actions button {
   border: none;
-  color: white;
   padding: 5px 8px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
   margin-right: 5px;
+  color: white;
+  background-color: gainsboro;
 }
 
 .actions button:disabled {
