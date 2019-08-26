@@ -11,7 +11,7 @@ npm run watch
 ```
 
 ```
-node docker/server.js <COMPOSE_DIR>
+node docker/server.js --dir <COMPOSE_DIR>
 ```
 
 Access the page at http://localhost:8300

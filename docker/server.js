@@ -18,6 +18,7 @@ app.use(bodyParser.text());
 app.use(express.static('dist'));
 app.get('/', (_, res) => res.redirect('/index.html'));
 
+app.get('/_ping', (req, res) => { res.send(); });
 app.use('/_load', express.static(args.dir));
 app.post('/_save/:file', (req, res) => {
   fs.writeFileSync(path.join(args.dir, req.params.file), req.body);
