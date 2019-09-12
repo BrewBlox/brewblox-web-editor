@@ -3,6 +3,7 @@ const AceEditor = require('vue2-ace-editor');
 import composeSchema from './compose-schema.json';
 import jsonschema from 'jsonschema';
 import yaml from 'js-yaml';
+import { setInterval, clearInterval } from 'timers';
 
 export default {
   name: 'App',
@@ -10,6 +11,8 @@ export default {
     AceEditor,
   },
   data: () => ({
+    pingInterval: null,
+    pingOk: true,
     fileName: 'docker-compose.yml',
     baseText: '',
     text: '',
@@ -41,6 +44,12 @@ export default {
     const resp = await fetch(`/_load/${this.fileName}`);
     this.baseText = await resp.text();
     this.text = this.baseText;
+    this.pingInterval = setInterval(this.ping, 30 * 1000);
+  },
+  destroyed() {
+    if (this.pingInterval) {
+      clearInterval(this.pingInterval);
+    }
   },
   methods: {
     initEditor(editor) {
@@ -61,6 +70,15 @@ export default {
           if (resp.ok) {
             this.baseText = sent;
           }
+        });
+    },
+    ping() {
+      fetch('/_ping')
+        .then(resp => {
+          this.pingOk = resp.ok;
+        })
+        .catch((e) => {
+          this.pingOk = false;
         });
     },
   },
@@ -87,7 +105,12 @@ export default {
       >
         Save
       </button>
-      <div v-if="!!validateError" style="color: red">
+      <div v-if="!pingOk" style="color: red">
+        Connection to server lost.
+        <br />
+        Is 'brewblox-ctl editor' still running?
+      </div>
+      <div v-else-if="!!validateError" style="color: red">
         Validation error:
         <br />
         {{ validateError }}
