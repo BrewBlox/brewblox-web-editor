@@ -20,7 +20,7 @@ variables:
   # DOCKER_PASSWORD
   - group: brewblox
   - name: DOCKER_REPO
-    value: brewblox/brewblox-automation
+    value: brewblox/brewblox-web-editor
 
 steps:
 - task: NodeTool@0
